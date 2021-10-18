@@ -14,7 +14,6 @@ const Post = mongoose.model('Post', {
   },
   imageUrl: {
     type: String,
-    required: true,
   },
 });
 

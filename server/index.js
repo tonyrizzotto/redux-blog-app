@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 });
 
 // initialize Post Routes
-// app.use(postRoutes);
+app.use(postRoutes);
 
 // Launch app on port
 app.listen(PORT, () => {

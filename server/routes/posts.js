@@ -8,9 +8,8 @@ router.use(express.json());
 // Get all posts  GET /api/post
 router.get('/api/post', async (req, res) => {
   try {
-    const { post } = req.body;
-    console.log(post);
-    res.status(200).send({ post });
+    const all = await Post.find();
+    res.status(200).send(all);
   } catch (error) {
     res.status(401).send();
   }
