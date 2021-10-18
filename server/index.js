@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 
 // Assign global variables
 dotenv.config({
-  path: './config/config.env',
+  path: './config/.env',
 });
 
 const PORT = process.env.PORT;
