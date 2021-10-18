@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { selectAllPosts, fetchPosts } from '../features/postSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
-export function PostList() {
+export default function PostList() {
   const dispatch = useDispatch();
 
   // gets posts from the state object
@@ -25,7 +25,6 @@ export function PostList() {
     content = 'Loading...';
   } else if (postStatus === 'succeeded') {
     // set content to a map of the posts
-
     content = posts.posts.map((post) => (
       <div key={post._id}>
         <h3>{post.title}</h3>
