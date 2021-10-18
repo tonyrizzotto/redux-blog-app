@@ -1,4 +1,5 @@
 const app = require('express')();
+const connectDB = require('./config/db');
 const dotenv = require('dotenv');
 
 // Assign global variables
@@ -7,6 +8,9 @@ dotenv.config({
 });
 
 const PORT = process.env.PORT;
+
+// Connect to MongoDB
+connectDB();
 
 app.get('/', (req, res) => {
   res.send('hello!');
