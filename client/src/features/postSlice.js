@@ -31,6 +31,25 @@ export const fetchPosts = createAsyncThunk('posts/fetchAll', async () => {
   return response;
 });
 
+// async Thunk to create a new Post
+export const addNewPost = createAsyncThunk(
+  'posts/addNewPost',
+  async (newPost) => {
+    await fetch('/api/post', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: newPost.title,
+        body: newPost.body,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => data);
+  }
+);
+
 // Initializes a piece of state called 'posts'
 const postSlice = createSlice({
   name: 'posts',
@@ -50,6 +69,12 @@ const postSlice = createSlice({
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      .addCase(addNewPost.fulfilled, (state, action) => {
+        // if the action is fulfilled, return state to idle to force a refresh
+        state.status = 'idle';
+        // clear posts for refresh
+        state.posts = [];
       });
   },
 });

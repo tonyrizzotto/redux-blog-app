@@ -18,7 +18,7 @@ router.get('/api/post', async (req, res) => {
 // Create new post  POST /api/post
 router.post('/api/post', async (req, res) => {
   const data = req.body;
-
+  console.log(data);
   const post = new Post({
     title: data.title,
     body: data.body,
