@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // a timer to slow down data fetch
-const delay = (ms = 1000) => new Promise((r) => setTimeout(r, ms));
+const delay = (ms = 500) => new Promise((r) => setTimeout(r, ms));
 
 // Initial state of our Posts
 const initialState = {
@@ -10,8 +10,14 @@ const initialState = {
   error: null,
 };
 
-// selector for all posts
+// selector helper for all posts
 export const selectAllPosts = (state) => state.posts;
+
+// selector help to filter post by ID
+export const selectPostById = (state, postId) => {
+  const current = state.posts.posts;
+  return current.find((post) => post._id === postId);
+};
 
 // async Thunk to fetch all posts
 export const fetchPosts = createAsyncThunk('posts/fetchAll', async () => {

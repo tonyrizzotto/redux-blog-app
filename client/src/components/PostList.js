@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { selectAllPosts, fetchPosts } from '../features/postSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -27,7 +28,9 @@ export default function PostList() {
     // set content to a map of the posts
     content = posts.posts.map((post) => (
       <div key={post._id}>
-        <h3>{post.title}</h3>
+        <h3>
+          <Link to={`/posts/${post._id}`}>{post.title}</Link>
+        </h3>
         <p>{post.body}</p>
       </div>
     ));
